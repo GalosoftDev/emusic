@@ -46,7 +46,7 @@
 				
 				<div class="form-group">
 					<label for="productImage" class="control-label">Upload Picture</label>
-					<form:input path="productImage" id="productImage" type="file" class="form-control"/>
+					<form:input path="productImage" id="productImage" type="file" class="file"/>
 				</div>
 				
 				<br>

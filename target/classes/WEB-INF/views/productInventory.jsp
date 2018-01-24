@@ -12,6 +12,7 @@
 		<div class="container">
 		 <table class="table table-hover table-stripped">
 				<tr>
+					<th>Photo Thumb </th>
 					<th>ProductId</th>
 					<th>ProductName</th>
 					<th>ProductDescription</th>
@@ -23,6 +24,8 @@
 				</tr>
 				<c:forEach items="${products}" var="product">
 				<tr>
+				    <td><img alt="Image" src="<c:url value="/resources/images/${product.productId}.png"/>"
+				         width="100" height="100"></td>
 					<td>${product.productId}</td>
 					<td>${product.productName}</td>
 					<td>${product.productDes}</td>

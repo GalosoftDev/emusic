@@ -10,7 +10,7 @@
 		
 		<div class="row">
 			<div class="col-md-5">
-				<img alt="image" src="#">
+				<img alt="Image" src="<c:url value="/resources/images/${product.productId}.png"/>">
 			</div>
 			<div class="col-md-5">
 				<h3>Name: ${product.productName}</h3>
