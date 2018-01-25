@@ -14,6 +14,7 @@
 			
 				<div class="form-group">
 					<label for="name">Name</label>
+					<form:errors path="productName" cssStyle="color:#FF00DD"/>
 					<form:input path="productName" id="name" class="form-control"/>
 				</div>
 				
@@ -36,11 +37,13 @@
 				
 				<div class="form-group">
 					<label for="price">Price</label>
+					<form:errors path="productPrice" cssStyle="color:#FF00DD"/>
 					<form:input path="productPrice" id="price" class="form-control"/>
 				</div>
 				
 				<div class="form-group">
 					<label for="units">Units</label>
+					<form:errors path="productUnits" cssStyle="color:#FF00DD"/>
 					<form:input path="productUnits" id="units" class="form-control"/>
 				</div>
 				

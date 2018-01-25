@@ -4,23 +4,23 @@
 <div class="container-wrapper">
 	<div class="container">
 		<div class="page-header">
-			<h1>Add Product</h1>
+			<h1>Edit Product</h1>
 			<p class="lead">Fill the fields please</p>
 		</div>
 		
 		<div class="row">
-			<form:form action="${pageContext.request.contextPath}/addProduct" method="post" 
+			<form:form action="${pageContext.request.contextPath}/editProduct" method="post" 
 			           commandName="product" enctype="multipart/form-data">
-			
+				<form:hidden path="productId" value="${product.productId}" />
+				
 				<div class="form-group">
 					<label for="name">Name</label>
-					<form:errors path="productName" cssStyle="color:#FF00DD"/>
-					<form:input path="productName" id="name" class="form-control"/>
+					<form:input path="productName" id="name" class="form-control" value="${product.productName}" />
 				</div>
 				
 				<div class="form-group">
 					<label for="name">Description</label>
-					<form:textarea path="productDes" id="description" class="form-control"/>
+					<form:textarea path="productDes" id="description" class="form-control" value="${product.productDes}"  />
 				</div>
 				
 				<div class="form-group">
@@ -37,14 +37,12 @@
 				
 				<div class="form-group">
 					<label for="price">Price</label>
-					<form:errors path="productPrice" cssStyle="color:#FF00DD"/>
-					<form:input path="productPrice" id="price" class="form-control"/>
+					<form:input path="productPrice" id="price" class="form-control" value="${product.productPrice}"/>
 				</div>
 				
 				<div class="form-group">
 					<label for="units">Units</label>
-					<form:errors path="productUnits" cssStyle="color:#FF00DD"/>
-					<form:input path="productUnits" id="units" class="form-control"/>
+					<form:input path="productUnits" id="units" class="form-control" value="${product.productUnits}"/>
 				</div>
 				
 				<div class="form-group">

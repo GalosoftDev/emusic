@@ -37,6 +37,8 @@
 					    <span class="glyphicon glyphicon-info-sign" /></a>
 					    <a href="<spring:url value="/deleteProduct/${product.productId}"/>">
 					    <span class="glyphicon glyphicon-remove" /></a>
+					    <a href="<spring:url value="/editProduct/${product.productId}"/>">
+					    <span class="glyphicon glyphicon-pencil" /></a>
 					</td>
 				</tr>
 				

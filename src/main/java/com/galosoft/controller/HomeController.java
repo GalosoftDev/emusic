@@ -2,13 +2,17 @@ package com.galosoft.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,7 +71,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/addProduct", method=RequestMethod.POST)
-	public String addProductPost(@ModelAttribute("product")Product product, HttpServletRequest request) {
+	public String addProductPost(@Valid @ModelAttribute("product")Product product, HttpServletRequest request, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return "addProduct";
+		}
+		
 		productDao.addProduct(product);
 		
 		MultipartFile productImage = product.getProductImage();
@@ -87,8 +96,65 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/deleteProduct/{id}")
-	public String deleteProduct(@PathVariable String id, Model model) {
+	public String deleteProduct(@PathVariable String id, Model model,HttpServletRequest request ) {
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		path = Paths.get(rootDirectory + "\\WEB-INF\\views\\resources\\images\\" + id+ ".png");
+		
+		if(Files.exists(path)) {
+			try {
+				Files.delete(path);
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		productDao.deleteProduct(id);
+		
 		return "redirect:/productInventory";
 	}
+	
+	
+	@RequestMapping("/editProduct/{id}")
+	public String editProduct(@PathVariable String id, Model model) {
+		Product product = productDao.getProductById(id);
+		model.addAttribute(product);
+		return "editProduct";
+	}
+	
+	@RequestMapping(value="/editProduct", method = RequestMethod.POST)
+	public String editProduct(@Valid @ModelAttribute("product")Product product, Model model, HttpServletRequest request, BindingResult result) {
+		MultipartFile productImage = product.getProductImage();
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		path = Paths.get(rootDirectory + "\\WEB-INF\\views\\resources\\images\\" + product.getProductId()+ ".png");
+		
+		if(productImage != null && !productImage.isEmpty()) {
+			try {
+				productImage.transferTo(new File(path.toString()));
+			}catch(Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("product saving failed...", e);
+			}
+		}
+		if(result.hasErrors()) {
+			return "editProduct";
+		}
+		
+		productDao.editProduct(product);
+		
+		return "redirect:/productInventory";
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
