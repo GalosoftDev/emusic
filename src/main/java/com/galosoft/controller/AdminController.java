@@ -53,7 +53,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/addProduct", method=RequestMethod.POST)
-	public String addProductPost(@Valid @ModelAttribute("product")Product product, HttpServletRequest request, BindingResult result) {
+	public String addProductPost(@Valid @ModelAttribute("product")Product product, BindingResult result, HttpServletRequest request) {
 		
 		if(result.hasErrors()) {
 			return "addProduct";

@@ -14,7 +14,7 @@
 			
 				<div class="form-group">
 					<label for="name">Name</label>
-					<form:errors path="productName" cssStyle="color:#FF00DD"/>
+					<form:errors path="productName" cssStyle="color:#FF0000"/>
 					<form:input path="productName" id="name" class="form-control"/>
 				</div>
 				
