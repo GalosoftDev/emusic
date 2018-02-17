@@ -55,8 +55,6 @@ public class Cart {
 		updateGrandTotal();
 	}
 	
-	
-
 	public void removeCartItem(CartItem item) {
 		String productId = item.getProduct().getProductId();
 		cartItems.remove(productId);

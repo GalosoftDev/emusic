@@ -11,12 +11,14 @@
 				</div>
 			</section>
 			
-			<section>
-				<div class="container">
+			<section class="container" ng-app="cartApp">
+				<div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')">
+				                 
+				<div>
 					<a class="btn btn-danger pull-left"><span class="glyphicon glyphicon-remove" />Clear cart</a>
 				</div>
 				
-				<table>
+				<table class = "table table-hover">
 					<tr>
 						<th>Product</th>
 						<th>Unit Price</th>
@@ -24,24 +26,25 @@
 						<th>Price</th>
 						<th>Action</th>
 					</tr>
-					<tr>
-						<th>productName</th>
-						<th>productPrice</th>
-						<th>quantity</th>
-						<th>totalPrice</th>
-						<th>remove button</th>
+					<tr ng-repeat = "item in cart.cartItems">
+						<th>{{item.product.productName}}</th>
+						<th>{{item.product.productPrice}}</th>
+						<th>{{item.quantity}}</th>
+						<th>{{item.totalPrice}}</th>
+						<th><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)">
+						    <span class="glyphicon glyphicon-remove"/></a></th>
 					</tr>
 					<tr>
 						<th></th>
 						<th></th>
 						<th>Grand Total</th>
-						<th>grandTotal</th>
+						<th>{{cart.grandTotal}}</th>
 						<th></th>
 					</tr>
 				</table>
 				
-				<a href= "<spring:url value="/productList" />">Continue Shopping</a>
-				
+				<a href= "<spring:url value="/productList" />" class="btn btn-primary">Continue Shopping</a>
+			   </div>
 			</section>
 		</div>	
 	</div>

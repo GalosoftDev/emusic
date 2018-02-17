@@ -3,9 +3,13 @@ package com.galosoft.dao.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.galosoft.dao.CartDao;
 import com.galosoft.model.Cart;
 
+
+@Repository
 public class CartDaoImpl implements CartDao{
 	
 	private Map<String, Cart> listOfCarts;

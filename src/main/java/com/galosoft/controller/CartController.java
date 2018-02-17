@@ -48,7 +48,7 @@ public class CartController {
 	
 	@RequestMapping(value="/{cartId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void addItem(@PathVariable(value = "´productId") String productId, HttpServletRequest request) {
+    public void addItem(@PathVariable(value = "productId") String productId, HttpServletRequest request) {
 		String sessionId = request.getSession(true).getId();
 		Cart cart = cartDao.read(sessionId);
 		
@@ -57,6 +57,7 @@ public class CartController {
 		}
 		
 		Product product = productDao.getProductById(productId);
+		
 		if(product == null) {
 			throw new IllegalArgumentException(new Exception());
 		}
@@ -84,7 +85,7 @@ public class CartController {
 	}
 	
 	@ExceptionHandler(IllegalArgumentException.class)
-	@ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Illegal request, please verufy your payload")
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Illegal request, please verify your payload")
 	public void handleClientErrors(Exception e) {}
 	
 	@ExceptionHandler(Exception.class)
