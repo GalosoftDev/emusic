@@ -1,7 +1,6 @@
 /** created */
 var cartApp = angular.module("cartApp", []);
 
-
 cartApp.controller("cartCtrl", function($scope, $http){
 
 	   $scope.refreshCart = function(cartId){
@@ -12,6 +11,10 @@ cartApp.controller("cartCtrl", function($scope, $http){
 		   
 	   $scope.clearCart = function(){
 		   $http.delete('/MySpring/rest/cart/'+$scope.cartId).success($scope.refreshCart($scope.cartId));
+	   };
+	   
+	   $scope.testCart = function(){
+		   alert("Test angular");
 	   };
 	   
 	   $scope.initCartId = function(cartId){

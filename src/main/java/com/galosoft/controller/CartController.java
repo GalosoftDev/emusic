@@ -46,7 +46,7 @@ public class CartController {
 		cartDao.delete(cartId);
 	}
 	
-	@RequestMapping(value="/{cartId}", method = RequestMethod.PUT)
+	@RequestMapping(value="/add/{cartId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void addItem(@PathVariable(value = "productId") String productId, HttpServletRequest request) {
 		String sessionId = request.getSession(true).getId();
@@ -66,7 +66,7 @@ public class CartController {
 	}
 	
 	
-	@RequestMapping(value="/{cartId}", method = RequestMethod.PUT)
+	@RequestMapping(value="/remove/{cartId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void removeItem(@PathVariable String productId, HttpServletRequest request) {
 		String sessionId = request.getSession(true).getId();
@@ -88,12 +88,11 @@ public class CartController {
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Illegal request, please verify your payload")
 	public void handleClientErrors(Exception e) {}
 	
+	
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Internal Server Error")
-	public void handleServerError(Exception e) {};
-	
-	
-	
+	public void handleServerErrors(Exception e) {};
+		
 }
 
 

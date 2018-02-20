@@ -24,14 +24,16 @@
 				<br/>
 				<c:set var="role" scope="page" value="${param.role}"/>
 				<c:set var="url" scope="page" value="/productList"/>
-				<c:if test="${role="admin"}">
+				<c:if test="${role == 'admin'}">
 					<c:set var="url" scope="page" value="/admin/productInventory"/>
 				</c:if>
 				
 				<p ng-controller="cartCtrl">
 					<a href= "<c:url value="${url}" />" class="btn btn-default">Back</a>
+					
 					<a href= "#" class="btn btn-warning" ng-click="addToCart('${product.productId}')">
 					   <span class="glyphicon glyphicon-shopping-cart"/>Order Now</a>
+					   
 					<a href= "<spring:url value="/cart" />" class="btn btn-default">
 					   <span class="glyphicon glyphicon-hand-right"/>View Cart</a>    
 				</p>
