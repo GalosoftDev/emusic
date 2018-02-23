@@ -30,11 +30,11 @@ public class CartController {
 	private ProductDao productDao;
 	
 	@RequestMapping(value="/{cartId}", method = RequestMethod.GET)
-		public @ResponseBody Cart read(@PathVariable(value="cartId") String cartId) {
+		public @ResponseBody Cart read(@PathVariable(value= "cartId") String cartId) {
 		return cartDao.read(cartId);
 	}
 	
-	@RequestMapping(value="/{cartId}", method = RequestMethod.PUT)
+	/*@RequestMapping(value="/{cartId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@PathVariable(value = "cartId") String cartId, @RequestBody Cart cart) {
 		cartDao.update(cartId, cart);
@@ -82,7 +82,7 @@ public class CartController {
 		}
 		cart.removeCartItem(new CartItem(product));
 		cartDao.update(sessionId, cart);
-	}
+	}*/
 	
 	@ExceptionHandler(IllegalArgumentException.class)
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Illegal request, please verify your payload")

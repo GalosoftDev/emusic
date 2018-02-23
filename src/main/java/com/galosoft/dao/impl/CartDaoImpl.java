@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.galosoft.dao.CartDao;
@@ -22,7 +23,8 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public Cart create(Cart cart) {
 		if(listOfCarts.keySet().contains(cart.getCartId())) {
-			throw new IllegalArgumentException(String.format("Can not create a cart, exists", cart.getCartId()));
+			 throw new IllegalArgumentException(String.format("Can not create cart"
+	                    + "Cart with specified id (%) already exists.",cart.getCartId()));
 		}
 		listOfCarts.put(cart.getCartId(), cart);
 		return cart;
@@ -36,7 +38,8 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public void update(String cartId, Cart cart) {
 		if(!listOfCarts.keySet().contains(cartId)) {
-			throw new IllegalArgumentException(String.format("Can not update a cart, does not exists", cart.getCartId()));
+			throw new IllegalArgumentException(String.format("Can not update cart"
+                    + "Cart with specified id (%) already exists.",cart.getCartId()));
 		}
 		listOfCarts.put(cartId, cart);
 	}
@@ -44,7 +47,8 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public void delete(String cartId) {
 		if(!listOfCarts.keySet().contains(cartId)) {
-			throw new IllegalArgumentException(String.format("Can not remove a cart, does not exists", cartId ));
+			throw new IllegalArgumentException(String.format("Can not update cart"
+                    + "Cart with specified id (%) already exists.",cartId));
 		}
 		listOfCarts.remove(cartId);
 	}

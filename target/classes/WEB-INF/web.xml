@@ -15,8 +15,8 @@
   
   <context-param>
   	<param-name>configContextLocation</param-name>
-  	<param-value>/WEB-INF/bruce-dispatcher-servlet.xml
-  	             /WEB-INF/applicationContext.xml,
+  	<param-value>/WEB-INF/bruce-dispatcher-servlet.xml,
+  	             /WEB-INF/applicationContext.xml
     </param-value>
   </context-param>
   

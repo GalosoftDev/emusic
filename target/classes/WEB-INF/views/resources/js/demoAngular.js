@@ -10,7 +10,7 @@ app.controller("demoCtrl", function($scope){
 	   $scope.message = " demo angular";   
 	
 	   $scope.testCart = function(){
-		   alert("Test angular");
+		   alert("Test angular y mas");
 	   };
 	   
 	  
